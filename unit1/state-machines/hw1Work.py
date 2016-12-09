@@ -161,7 +161,7 @@ def calcTest(exprs):
     env = {}
     for e in exprs:
         print '%', e                    # e is the experession 
-        print # your expression here
+        print parse(tokenize(e)).eval(env)
         print '   env =', env
 
 # Simple tokenizer tests
@@ -233,7 +233,7 @@ testExprs = ['(2 + 5)',
              '(w = (z + 1))',
              'w'
              ]
-#calcTest(testExprs)
+calcTest(testExprs)
 
 ####################################################################
 # Test cases for LAZY evaluator
@@ -248,11 +248,11 @@ Sum(2.0, Var(c))
 def testLazyEval():
     env = {}
     Assign(Variable('a'), Sum(Variable('b'), Variable('c'))).eval(env)
-    # print Variable('a').eval(env)
-    # env['b'] = Number(2.0)
-    # print Variable('a').eval(env)
-    # env['c'] = Number(4.0)
-    # print Variable('a').eval(env)
+    print Variable('a').eval(env)
+    env['b'] = Number(2.0)
+    print Variable('a').eval(env)
+    env['c'] = Number(4.0)
+    print Variable('a').eval(env)
 
 #testLazyEval()
 
